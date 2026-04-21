@@ -1,5 +1,6 @@
-const CANNON = window.CANNON;
-const THREE = window.THREE;
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import * as CANNON from 'cannon-es';
 
 class PhysicsEngine {
     constructor() {
@@ -844,7 +845,7 @@ class App {
         this.renderer.setSize(container.clientWidth, container.clientHeight);
         this.renderer.shadowMap.enabled = true;
 
-        this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
         this.controls.enableDamping = true;
         this.controls.dampingFactor = 0.05;
 
@@ -886,7 +887,7 @@ class App {
             shape: groundShape,
             material: new CANNON.Material({ friction: 0.5, restitution: 0.3 })
         });
-        groundBody.quaternion.setFromEulerAngles(-Math.PI / 2, 0, 0);
+        groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
         this.physics.addBody(groundBody);
     }
 
@@ -1136,11 +1137,11 @@ class App {
         this.scene.add(sphereMesh);
 
         const sphereShape = new CANNON.Sphere(0.5);
-        const sphereMaterial = new CANNON.Material({ friction: 0.5, restitution: 0.8 });
+        const spherePhysicsMaterial = new CANNON.Material({ friction: 0.5, restitution: 0.8 });
         const sphereBody = new CANNON.Body({
             mass: 1,
             shape: sphereShape,
-            material: sphereMaterial
+            material: spherePhysicsMaterial
         });
         sphereBody.position.copy(sphereMesh.position);
         this.physics.addBody(sphereBody);
