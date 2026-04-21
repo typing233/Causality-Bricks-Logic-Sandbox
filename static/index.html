@@ -162,7 +162,7 @@
         .form-input, .form-select {
             width: 100%;
             padding: 10px 12px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid #333;
             border-radius: 6px;
             color: #fff;
@@ -170,10 +170,15 @@
             transition: all 0.2s;
         }
 
+        .form-select option {
+            background: #1a1a2e;
+            color: #fff;
+        }
+
         .form-input:focus, .form-select:focus {
             outline: none;
             border-color: #4cc9f0;
-            background: rgba(76, 201, 240, 0.1);
+            background: rgba(76, 201, 240, 0.15);
         }
 
         .form-slider {
